@@ -25,12 +25,15 @@ function errorHandler(error) {
 }
 
 function displayOutput() {
-    let abcd = textarea.value;
-    textarea.value =''
+
     let url = modifiedUrl(minionUrl);
+    console.log(url);
     fetch(url).then(response => response.json())
-        .then(data => console.log(data))
-        .then(json => bananaOutput.innerText = 'For' + abcd +  'you say' + json.contents.translated)
+        .then(data => {
+            console.log(data)
+            return data;
+        })
+        .then(data => bananaOutput.innerText = data.contents.translated)
         .catch(errorHandler)
 
 
